@@ -90,7 +90,29 @@ class DoublyLinkedList:
     order of the other elements of the List.
     """
     def delete(self, node):
-        pass
+        self.length -= 1
+
+        if self.head is None and self.tail is None:
+            return
+        elif self.head is self.tail:
+            self.head = None
+            self.tail = None
+        elif node is self.head:
+            self.head = node.next
+            self.head.prev = None
+        elif node is self.tail:
+            self.tail = node.prev
+            self.tail.next = None
+        else:
+            current = self.head
+
+            while current is not node:
+                current = current.next
+
+            if node.prev:
+                node.prev.next = node.next
+            if node.next:
+                node.next.prev = node.prev
 
     """
     Finds and returns the maximum value of all the nodes 
