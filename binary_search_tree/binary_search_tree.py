@@ -46,11 +46,46 @@ class BSTNode:
 
     # Return the maximum value found in the tree
     def get_max(self):
-        pass
+        # U: traverse BST to find global max
+        # 1: check your input --> is there a node there?
+        # 2. declare max variable == self.val
+        # 3. iterate thru tree until we hit Null
+        # 4. update max val
+        # 5 move to the right
+
+        if not self:
+            return None
+        max_value = self.value
+        current = self
+
+        while current:
+            if current.value > max_value:
+                max_value = current.value
+            current = current.right
+        return max_value
+
+        # recursive solution
+        # base case: no right node available
+        # recursive step: pass right subtree to get_max
+        
+        # if not self.right:
+            # return self.value
+        # return self.right.get_max()
 
     # Call the function `fn` on the value of each node
     def for_each(self, fn):
-        pass
+        # U: apply fn to each node of tree
+        # 1. check if node is null
+        # 2. apply fn to root
+        # 3. call for_each on left and right subtrees
+
+        if not self:
+            return
+        fn(self.value)
+        if self.left:
+            self.left.for_each(fn)
+        if self.right:
+            self.right.for_each(fn)
 
     # Part 2 -----------------------
 
